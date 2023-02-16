@@ -1,26 +1,61 @@
 #include "Heap.h"
 
+using std::cout;
+using std::pair;
+
 Heap::Heap() {
   memset(this, 0x0, sizeof(Heap));
 }
 
-inline int Heap::size() {
+int Heap::size() {
   return this->currentSize;
 }
 
-inline bool Heap::empty() {
+bool Heap::empty() {
   return this->currentSize == 0;
 }
 
-inline bool Heap::full() {
+bool Heap::full() {
   return this->currentSize >= 100; // Should never exceed 100 anyway tho 
 }
 
-inline int Heap::front() {
+// Does the actual printing. This prints the tree with the head at the bottom 
+void Heap::printHelperOrSomething(int idx, int depth) {
+  depth++;
+  // Get L and R
+  int l = idx * 2 + 1;
+  if (l >= currentSize) {
+    for (int i = 0; i < depth; i++) {
+      cout << "       ";
+    }
+    cout << data[idx] << "\n";
+    return;
+  }
+  printHelperOrSomething(l, depth);
+  int r = l + 1;
+  if (r >= currentSize) {
+    for (int i = 0; i < depth; i++) {
+      cout << "       ";
+    }
+    cout << data[idx] << "\n";
+    return;
+  }
+  printHelperOrSomething(r, depth);
+  for (int i = 0; i < depth; i++) {
+    cout << "       ";
+  }
+  cout << data[idx] << "\n";
+}
+
+void Heap::print() {
+  printHelperOrSomething(0, 0);
+}
+
+int Heap::front() {
   return this->data[0];
 }
 
-inline bool Heap::push(int num) {
+bool Heap::push(int num) {
   if (this->full()) return false;
   // Insert at da end
   int idx = currentSize++;
@@ -37,9 +72,9 @@ inline bool Heap::push(int num) {
   return true;
 }
 
-inline bool Heap::pop() {
+bool Heap::pop() {
   if (this->empty()) return false;
-  std::cout << "Removing " << data[0] << " from the list!\n";
+  cout << "Removing " << data[0] << " from the list!\n";
   currentSize--;
   if (this->empty()) return true;
   // Get the last element and stick it at the top
@@ -65,6 +100,6 @@ inline bool Heap::pop() {
   return true;
 }
 
-inline void Heap::clear() {
+void Heap::clear() {
   while (!this->empty()) this->pop();
 }
