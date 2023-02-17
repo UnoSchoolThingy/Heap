@@ -43,6 +43,7 @@ void Heap::printHelperOrSomething(int idx, int depth) {
   printHelperOrSomething(r, depth);
 }
 
+// Function that gets called to print the heap 
 void Heap::print() {
   if (this->empty()) {
     cout << "The heap is empty!\n";
@@ -51,10 +52,7 @@ void Heap::print() {
   printHelperOrSomething(0, 0);
 }
 
-int Heap::front() {
-  return this->data[0];
-}
-
+// Push into heap 
 bool Heap::push(int num) {
   if (this->full()) return false;
   // Insert at da end
@@ -72,6 +70,7 @@ bool Heap::push(int num) {
   return true;
 }
 
+// Pop out of heap 
 bool Heap::pop() {
   if (this->empty()) return false;
   cout << "Removing " << data[0] << " from the list!\n";

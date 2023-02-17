@@ -11,9 +11,10 @@ class Heap {
   int size();
   bool empty();
   bool full();
-  void printHelperOrSomething(int idx, int depth);
+ private:
+  void printHelperOrSomething(int idx, int depth); // I wanna use this order 
+ public:
   void print();
-  int front();
   bool push(int num);
   bool pop();
   void clear();
