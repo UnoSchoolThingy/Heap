@@ -32,22 +32,22 @@ void Heap::printHelperOrSomething(int idx, int depth) {
     return;
   }
   printHelperOrSomething(l, depth);
-  int r = l + 1;
-  if (r >= currentSize) {
-    for (int i = 0; i < depth; i++) {
-      cout << "       ";
-    }
-    cout << data[idx] << "\n";
-    return;
-  }
-  printHelperOrSomething(r, depth);
+
   for (int i = 0; i < depth; i++) {
     cout << "       ";
   }
   cout << data[idx] << "\n";
+  
+  int r = l + 1;
+  if (r >= currentSize) return;
+  printHelperOrSomething(r, depth);
 }
 
 void Heap::print() {
+  if (this->empty()) {
+    cout << "The heap is empty!\n";
+    return;
+  }
   printHelperOrSomething(0, 0);
 }
 
