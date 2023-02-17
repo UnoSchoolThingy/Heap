@@ -1,9 +1,15 @@
+/* Uno Pasadhika 
+ * Heap: A max heap thingy 
+ * 2/17/2023 
+*/
+
 #include "Heap.h"
 #include "Utils.h"
 #include <fstream>
 
 using namespace std;
 
+// Prompt the user to add a number to the heap 
 bool promptAddNumber(Heap& heap) {
   cout << "Enter a number to insert: ";
   int n;
@@ -11,6 +17,7 @@ bool promptAddNumber(Heap& heap) {
   return heap.push(n);
 }
 
+// Prompt the user for a file name to load all the numbers from 
 void promptLoadFromFile(Heap& heap) {
   char filePath[200];
   cout << "Enter the file path: ";
